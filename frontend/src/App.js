@@ -10,10 +10,12 @@ import Journey from "@/components/Journey";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import CursorSpotlight from "@/components/CursorSpotlight";
+import CustomCursor from "@/components/CustomCursor";
+import GradientMesh from "@/components/GradientMesh";
+import SectionDivider from "@/components/SectionDivider";
 
 function App() {
   useEffect(() => {
-    // Ensure dark mode is applied
     document.documentElement.classList.add("dark");
   }, []);
 
@@ -27,15 +29,26 @@ function App() {
         Skip to content
       </a>
 
+      {/* Ambient gradient mesh (UNDER everything) */}
+      <GradientMesh />
+      {/* Global film grain overlay (above content, below cursor) */}
+      <div className="global-grain" aria-hidden />
+
       <CursorSpotlight />
+      <CustomCursor />
       <Navbar />
 
       <main id="main" className="relative z-10">
         <Hero />
+        <SectionDivider />
         <About />
+        <SectionDivider />
         <Projects />
+        <SectionDivider />
         <Skills />
+        <SectionDivider />
         <Journey />
+        <SectionDivider />
         <Contact />
       </main>
 

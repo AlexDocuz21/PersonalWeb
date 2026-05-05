@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Sparkles, ArrowRight } from "lucide-react";
 import BackgroundFX from "@/components/BackgroundFX";
 import MagneticButton from "@/components/MagneticButton";
+import CountUp from "@/components/CountUp";
 import { easeOutPremium, staggerContainer, fadeUp } from "@/lib/motion";
 
 const HEADLINE_LINES = [
@@ -149,9 +150,13 @@ export const Hero = () => {
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               className="relative"
             >
-              <div className="absolute -inset-6 -z-10 opacity-60 blur-2xl" style={{
-                background: "radial-gradient(280px 220px at 30% 30%, rgba(34,211,238,0.30), transparent 60%), radial-gradient(220px 180px at 80% 70%, rgba(125,107,255,0.20), transparent 60%)",
-              }} />
+              <div
+                className="absolute -inset-6 -z-10 opacity-60 blur-2xl"
+                style={{
+                  background:
+                    "radial-gradient(280px 220px at 30% 30%, rgba(34,211,238,0.30), transparent 60%), radial-gradient(220px 180px at 80% 70%, rgba(125,107,255,0.20), transparent 60%)",
+                }}
+              />
 
               <div
                 className="glass glass-strong relative overflow-hidden p-5 sm:p-6"
@@ -163,7 +168,14 @@ export const Hero = () => {
                     <span className="flex h-2 w-2 rounded-full bg-amber-300/70" />
                     <span className="flex h-2 w-2 rounded-full bg-emerald-400/70" />
                   </div>
-                  <span className="font-mono-tag text-[10px] text-white/40">FEATURED · LIVE</span>
+                  <span className="flex items-center gap-2 font-mono-tag text-[10px] text-white/55">
+                    <span>FEATURED</span>
+                    <span className="opacity-30">·</span>
+                    <span className="flex items-center gap-1.5">
+                      <span className="live-pulse" aria-hidden />
+                      <span className="text-emerald-300/85">LIVE</span>
+                    </span>
+                  </span>
                 </div>
 
                 <div className="mt-5 flex items-center gap-3">
@@ -177,16 +189,12 @@ export const Hero = () => {
                 </div>
 
                 <div className="mt-5 grid grid-cols-3 gap-2">
-                  {[
-                    { k: "Lighthouse", v: "98" },
-                    { k: "LCP", v: "1.1s" },
-                    { k: "Stack", v: "Custom" },
-                  ].map((s) => (
-                    <div key={s.k} className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                      <div className="font-mono-tag text-[9.5px] text-white/45">{s.k}</div>
-                      <div className="mt-1 text-[15px] font-semibold text-white">{s.v}</div>
-                    </div>
-                  ))}
+                  <Metric label="Lighthouse" value={98} />
+                  <Metric label="LCP" value={1.1} decimals={1} suffix="s" />
+                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+                    <div className="font-mono-tag text-[9.5px] text-white/45">Stack</div>
+                    <div className="mt-1 text-[15px] font-semibold text-white">Custom</div>
+                  </div>
                 </div>
 
                 <a
@@ -213,5 +221,17 @@ export const Hero = () => {
     </section>
   );
 };
+
+const Metric = ({ label, value, decimals = 0, suffix = "" }) => (
+  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+    <div className="font-mono-tag text-[9.5px] text-white/45">{label}</div>
+    <CountUp
+      value={value}
+      decimals={decimals}
+      suffix={suffix}
+      className="mt-1 inline-block text-[15px] font-semibold text-white tabular-nums"
+    />
+  </div>
+);
 
 export default Hero;

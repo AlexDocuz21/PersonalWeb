@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Github, Linkedin, Mail, Send, Loader2, ArrowUpRight } from "lucide-react";
 import { toast } from "sonner";
 import Section from "@/components/Section";
+import MagneticButton from "@/components/MagneticButton";
 import { fadeUp, staggerContainer, easeOutPremium } from "@/lib/motion";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "";
@@ -36,7 +37,7 @@ const SOCIALS = [
 export const Contact = () => {
   const reduced = useReducedMotion();
   const [form, setForm] = useState({ name: "", email: "", message: "", website: "" });
-  const [status, setStatus] = useState("idle"); // idle | loading | success | error
+  const [status, setStatus] = useState("idle");
   const [statusMsg, setStatusMsg] = useState("");
 
   const onChange = (e) => {
@@ -112,7 +113,7 @@ export const Contact = () => {
                     className="group flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur px-4 py-3 hover:border-cyan-300/25 hover:bg-white/[0.06] transition-colors"
                   >
                     <span className="flex items-center gap-3 min-w-0 flex-1">
-                      <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-white/10 bg-white/[0.04] text-cyan-200 shrink-0">
+                      <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-white/10 bg-white/[0.04] text-cyan-200 shrink-0 transition-transform duration-300 group-hover:rotate-[-6deg] group-hover:scale-105">
                         <Icon size={15} />
                       </span>
                       <span className="flex flex-col min-w-0">
@@ -155,7 +156,7 @@ export const Contact = () => {
             data-testid="contact-form"
             noValidate
           >
-            {/* Honeypot field */}
+            {/* Honeypot */}
             <input
               type="text"
               name="website"
@@ -223,24 +224,26 @@ export const Contact = () => {
                 {status === "loading" && "Sending…"}
                 {(status === "success" || status === "error") && statusMsg}
               </p>
-              <button
-                type="submit"
-                disabled={status === "loading"}
-                data-testid="contact-form-submit-button"
-                className="group inline-flex items-center justify-center gap-2 rounded-xl border border-cyan-300/25 bg-cyan-300/10 px-5 py-2.5 text-[13.5px] font-medium text-cyan-50 hover:border-cyan-300/45 hover:bg-cyan-300/15 disabled:opacity-60 disabled:cursor-not-allowed transition-colors focus-ring"
-              >
-                {status === "loading" ? (
-                  <>
-                    <Loader2 size={14} className="animate-spin" />
-                    Sending
-                  </>
-                ) : (
-                  <>
-                    <Send size={14} className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                    Send message
-                  </>
-                )}
-              </button>
+              <MagneticButton strength={10}>
+                <button
+                  type="submit"
+                  disabled={status === "loading"}
+                  data-testid="contact-form-submit-button"
+                  className="group inline-flex items-center justify-center gap-2 rounded-xl border border-cyan-300/25 bg-cyan-300/10 px-5 py-2.5 text-[13.5px] font-medium text-cyan-50 hover:border-cyan-300/45 hover:bg-cyan-300/15 disabled:opacity-60 disabled:cursor-not-allowed transition-colors focus-ring"
+                >
+                  {status === "loading" ? (
+                    <>
+                      <Loader2 size={14} className="animate-spin" />
+                      Sending
+                    </>
+                  ) : (
+                    <>
+                      <Send size={14} className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                      Send message
+                    </>
+                  )}
+                </button>
+              </MagneticButton>
             </div>
           </form>
         </motion.div>
@@ -252,11 +255,11 @@ export const Contact = () => {
 const FieldWrap = ({ label, htmlFor, children, multiline = false }) => (
   <label
     htmlFor={htmlFor}
-    className={`group flex flex-col gap-1.5 rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur px-4 ${
+    className={`field-wrap group flex flex-col gap-1.5 rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur px-4 ${
       multiline ? "py-3" : "py-2.5"
-    } transition-colors duration-200 focus-within:border-cyan-300/40 focus-within:bg-white/[0.05] hover:border-white/20`}
+    }`}
   >
-    <span className="font-mono-tag text-[10px] text-white/45 group-focus-within:text-cyan-200/80">
+    <span className="field-label font-mono-tag text-[10px] text-white/45">
       {label}
     </span>
     {children}

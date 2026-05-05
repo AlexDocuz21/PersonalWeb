@@ -14,7 +14,7 @@ import {
   Cpu,
 } from "lucide-react";
 import Section from "@/components/Section";
-import { fadeUp, staggerContainer, easeOutPremium } from "@/lib/motion";
+import { fadeUp, staggerContainer } from "@/lib/motion";
 
 const CATEGORIES = [
   {
@@ -59,9 +59,9 @@ const CATEGORIES = [
 ];
 
 const accentRing = {
-  cyan: "hover:border-cyan-300/30 hover:shadow-[0_0_0_1px_rgba(34,211,238,0.18),0_0_28px_rgba(34,211,238,0.10)]",
-  violet: "hover:border-violet-300/30 hover:shadow-[0_0_0_1px_rgba(167,139,250,0.18),0_0_28px_rgba(167,139,250,0.10)]",
-  emerald: "hover:border-emerald-300/30 hover:shadow-[0_0_0_1px_rgba(52,211,153,0.18),0_0_28px_rgba(52,211,153,0.10)]",
+  cyan: "hover:border-cyan-300/40 hover:bg-cyan-300/5 hover:shadow-[0_0_0_1px_rgba(34,211,238,0.22),0_0_28px_rgba(34,211,238,0.12)]",
+  violet: "hover:border-violet-300/40 hover:bg-violet-300/5 hover:shadow-[0_0_0_1px_rgba(167,139,250,0.22),0_0_28px_rgba(167,139,250,0.12)]",
+  emerald: "hover:border-emerald-300/40 hover:bg-emerald-300/5 hover:shadow-[0_0_0_1px_rgba(52,211,153,0.22),0_0_28px_rgba(52,211,153,0.12)]",
 };
 
 const accentText = {
@@ -91,7 +91,7 @@ export const Skills = () => {
               whileInView={reduced ? undefined : "show"}
               viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
               variants={staggerContainer(0.06, 0.05 + ci * 0.06)}
-              className="glass relative overflow-hidden p-6 sm:p-7 transition-colors duration-300"
+              className="glass relative overflow-hidden p-6 sm:p-7"
               data-testid={`skills-category-${cat.title.toLowerCase()}`}
             >
               <div className="flex items-center justify-between">
@@ -116,11 +116,12 @@ export const Skills = () => {
                     <motion.li
                       key={skill.name}
                       variants={fadeUp}
-                      whileHover={reduced ? undefined : { y: -2, scale: 1.02 }}
-                      transition={{ duration: 0.3, ease: easeOutPremium }}
-                      className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[12.5px] text-white/80 transition-colors ${accentRing[cat.accent]}`}
+                      className={`skill-pill inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[12.5px] text-white/80 ${accentRing[cat.accent]}`}
                     >
-                      <Icon size={12} className={`${accentText[cat.accent]}`} />
+                      <Icon
+                        size={12}
+                        className={`skill-pill-icon ${accentText[cat.accent]}`}
+                      />
                       <span>{skill.name}</span>
                     </motion.li>
                   );
