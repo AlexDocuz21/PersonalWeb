@@ -1,42 +1,42 @@
 [
   {
     "content": "Add GradientMesh component (animated radial blobs)",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Add CustomCursor (cyan dot → ring on interactive)",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Add CountUp + SectionDivider components",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Update index.css (shimmer, glass inner highlight, global noise, label tracking, headline glow, cursor styles)",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Wire new components into App.js + dividers between sections",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Polish Hero (shimmer text, live pulse, count-up metrics, magnetic CTAs)",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Polish ProjectCard (lift+glow hover, screenshot tilt/scale)",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Polish Skills (pill icon hover animation)",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Polish Contact (magnetic submit, floating labels with glow)",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Verify with screenshots + ensure no regressions",
-    "status": "pending"
+    "status": "completed"
   }
 ]
