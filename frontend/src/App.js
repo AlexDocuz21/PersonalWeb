@@ -1,52 +1,47 @@
 import { useEffect } from "react";
 import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
+import { Toaster } from "@/components/ui/sonner";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Projects from "@/components/Projects";
+import Skills from "@/components/Skills";
+import Journey from "@/components/Journey";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
+import CursorSpotlight from "@/components/CursorSpotlight";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
+function App() {
   useEffect(() => {
-    helloWorldApi();
+    // Ensure dark mode is applied
+    document.documentElement.classList.add("dark");
   }, []);
 
   return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
-  );
-};
+    <div className="App relative">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-3 focus:py-2 focus:rounded-md focus:bg-white/10 focus:backdrop-blur focus:text-white focus:border focus:border-white/20"
+        data-testid="skip-to-content-link"
+      >
+        Skip to content
+      </a>
 
-function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <CursorSpotlight />
+      <Navbar />
+
+      <main id="main" className="relative z-10">
+        <Hero />
+        <About />
+        <Projects />
+        <Skills />
+        <Journey />
+        <Contact />
+      </main>
+
+      <Footer />
+
+      <Toaster richColors position="bottom-right" theme="dark" />
     </div>
   );
 }
