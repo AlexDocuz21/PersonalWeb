@@ -10,9 +10,27 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "";
 const API = `${BACKEND_URL}/api`;
 
 const SOCIALS = [
-  { label: "GitHub", icon: Github, href: "https://github.com/", testId: "social-github" },
-  { label: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/", testId: "social-linkedin" },
-  { label: "Email", icon: Mail, href: "mailto:hello@example.com", testId: "social-email" },
+  {
+    label: "GitHub",
+    handle: "@AlexDocuz21",
+    icon: Github,
+    href: "https://github.com/AlexDocuz21/",
+    testId: "social-github",
+  },
+  {
+    label: "LinkedIn",
+    handle: "alexandru-cristian-docuz",
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/alexandru-cristian-docuz-5296771ba/",
+    testId: "social-linkedin",
+  },
+  {
+    label: "Email",
+    handle: "alexandrucristiandocuz@gmail.com",
+    icon: Mail,
+    href: "mailto:alexandrucristiandocuz@gmail.com",
+    testId: "social-email",
+  },
 ];
 
 export const Contact = () => {
@@ -93,13 +111,15 @@ export const Contact = () => {
                     data-testid={s.testId}
                     className="group flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur px-4 py-3 hover:border-cyan-300/25 hover:bg-white/[0.06] transition-colors"
                   >
-                    <span className="flex items-center gap-3">
-                      <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-white/10 bg-white/[0.04] text-cyan-200">
+                    <span className="flex items-center gap-3 min-w-0 flex-1">
+                      <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-white/10 bg-white/[0.04] text-cyan-200 shrink-0">
                         <Icon size={15} />
                       </span>
-                      <span className="flex flex-col">
+                      <span className="flex flex-col min-w-0">
                         <span className="text-[13.5px] text-white">{s.label}</span>
-                        <span className="font-mono-tag text-[10.5px] text-white/45">CONNECT →</span>
+                        <span className="font-mono-tag text-[10.5px] text-white/45 truncate">
+                          {s.handle || "CONNECT →"}
+                        </span>
                       </span>
                     </span>
                     <ArrowUpRight

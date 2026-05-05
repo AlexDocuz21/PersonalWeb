@@ -38,9 +38,9 @@ export const Footer = () => {
           className="flex items-center gap-2"
         >
           {[
-            { label: "GitHub", icon: Github, href: "https://github.com/" },
-            { label: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/" },
-            { label: "Email", icon: Mail, href: "mailto:hello@example.com" },
+            { label: "GitHub", icon: Github, href: "https://github.com/AlexDocuz21/" },
+            { label: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/in/alexandru-cristian-docuz-5296771ba/" },
+            { label: "Email", icon: Mail, href: "mailto:alexandrucristiandocuz@gmail.com" },
           ].map((s) => {
             const Icon = s.icon;
             return (

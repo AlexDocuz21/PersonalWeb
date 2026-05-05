@@ -17,6 +17,7 @@ export const ProjectCard = ({
     accent = "cyan",
     note,
     available = true,
+    images = null,
   } = project;
 
   const accentMap = {
@@ -91,6 +92,38 @@ export const ProjectCard = ({
             >
               {t}
             </span>
+          ))}
+        </div>
+      )}
+
+      {images && images.length > 0 && (
+        <div className="relative mt-6 grid grid-cols-2 gap-3">
+          {images.map((img, i) => (
+            <motion.a
+              key={img.src}
+              href={href}
+              target={href.startsWith("http") ? "_blank" : undefined}
+              rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+              whileHover={reduced ? undefined : { y: -3 }}
+              transition={{ duration: 0.4, ease: easeOutPremium }}
+              className="group/img relative block overflow-hidden rounded-xl border border-white/10 bg-white/[0.02] aspect-[16/11]"
+              data-testid={`projects-featured-image-${i}`}
+            >
+              <img
+                src={img.src}
+                alt={img.alt}
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/img:scale-[1.04]"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-gradient-to-t from-[#070A0F]/85 via-[#070A0F]/20 to-transparent opacity-90 transition-opacity duration-500 group-hover/img:opacity-70"
+              />
+              <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-2 px-3 py-2.5">
+                <span className="font-mono-tag text-[10px] text-white/80">{img.label}</span>
+                <ExternalLink size={12} className="text-white/70 transition-transform duration-300 group-hover/img:translate-x-0.5 group-hover/img:-translate-y-0.5" />
+              </div>
+            </motion.a>
           ))}
         </div>
       )}
